@@ -20,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::prefix('user')->group(function() {
+
+    Route::get('/','Customer\HomeController@index')->name('çustomer.home');
+
+});
