@@ -52,7 +52,59 @@
                 </div>
             </div>
         </div>
+
     </div>
+</div>
+<!--Payment Modal-->
+<div class="row">
+    <button type="button" class="btn btn-primary ml-3 mt-3" data-toggle="modal" data-target="#exampleModal">
+        Make Payment
+    </button>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Enter Payment Details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="{{ route('account.payments') }}" method="post">
+                @csrf
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" class="form-control" id="phone" name="phone" readonly placeholder="Enter Phone" value={{ Auth::user()->phone }}>
+                      </div>
+                      <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" class="form-control" id="amount" name="amount"  placeholder="Enter Amount" required="true">
+                      </div>
+                      <div class="form-group">
+                        <label for="trans_no">Transaction Code</label>
+                        <input type="text" class="form-control" id="trans_no" name="trans_no"  placeholder="Transaction code" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="sender_name">Sender Name</label>
+                        <input type="text" class="form-control" id="sender_name" name="sender_name"  placeholder="Sender Name" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="trans_date">Transaction Date</label>
+                        <input type="text" class="form-control" id="trans_date" name="trans_date"  placeholder="Transaction Date" required>
+                      </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
 </div>
 
 @endsection

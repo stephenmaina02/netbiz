@@ -25,7 +25,10 @@ Route::middleware('verified')->group(function() {
 	    Route::get('/','Customer\HomeController@index')->name('account.home');
 
         Route::get('/referals/{type?}','Customer\HomeController@referals')->name('account.referals');
+
         Route::get('/deposits','Customer\HomeController@deposits')->name('account.deposits');
+
+        Route::post('/deposits','Customer\HomeController@payments')->name('account.payments');
 
 	});
 
