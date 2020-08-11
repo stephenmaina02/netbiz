@@ -13,16 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','PublicController@index')->name('public.home');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware('verified')->group(function() {
 
-Route::prefix('user')->group(function() {
+	Route::prefix('account')->group(function() {
 
-    Route::get('/','Customer\HomeController@index')->name('çustomer.home');
+	    Route::get('/','Customer\HomeController@index')->name('account.home');
+
+	});
 
 });
