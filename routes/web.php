@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +26,9 @@ Route::middleware('verified')->group(function() {
 
 	});
 
+});
+Route::prefix('control')->group(function() {
+
+    Route::get('/','Admin\HomeController@index')->name('admin.home');
+    Route::get('/registeredusers', 'Admin\HomeController@registeredusers')->name('admin.users');
 });
