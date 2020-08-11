@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\UserRelation;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -67,13 +68,105 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'username' => $data['username'],
-            'phone' => $data['phone'],
-            'refered_by' => $data['refered_by'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        if (array_key_exists('refered_by', $data)) {
+
+            try {
+
+                \DB::beginTransaction();
+
+
+
+
+                $user = User::create([
+                    'name' => $data['name'],
+                    'username' => $data['username'],
+                    'phone' => $data['phone'],
+                    'refered_by' => $data['refered_by'],
+                    'email' => $data['email'],
+                    'password' => Hash::make($data['password']),
+                ]);
+
+                if ($user->referedBy()->exists()) {
+                    
+                    $parentLevel1 = $user->referedBy;
+
+                    //insert direct
+
+                    UserRelation::create([
+                        'user_id' => $parentLevel1->id,
+                        'refered_user_id' => $user->id,
+                        'referral_type' => 'd',
+                        'amount' => 500,
+                    ]);
+
+                    if ($parentLevel1->referedBy()->exists()) {
+
+                        //insert first indirect
+
+                        $parentLevel2 = $parentLevel1->referedBy;
+
+                        UserRelation::create([
+                            'user_id' => $parentLevel2->id,
+                            'refered_user_id' => $user->id,
+                            'referral_type' => 'fid',
+                            'amount' => 150,
+                        ]);
+
+
+                        if ($parentLevel2->referedBy()->exists()) {
+
+                            //insert second indirect
+
+                            $parentLevel3 = $parentLevel2->referedBy;
+
+                            UserRelation::create([
+                                'user_id' => $parentLevel3->id,
+                                'refered_user_id' => $user->id,
+                                'referral_type' => 'sid',
+                                'amount' => 100,
+                            ]);
+
+                            if ($parentLevel3->referedBy()->exists()) {
+
+                                //insert third indirect
+
+                                $parentLevel4 = $parentLevel3->referedBy;
+
+                                UserRelation::create([
+                                    'user_id' => $parentLevel4->id,
+                                    'refered_user_id' => $user->id,
+                                    'referral_type' => 'tid',
+                                    'amount' => 100,
+                                ]);
+
+                            }
+
+
+                        }
+
+                    }
+
+
+                }
+
+
+                \DB::commit();
+
+                return $user;
+                
+            } catch (Exception $e) {
+                \DB::rollback();
+            }
+            
+        } else {
+            return User::create([
+                'name' => $data['name'],
+                'username' => $data['username'],
+                'phone' => $data['phone'],
+                'refered_by' => $data['refered_by'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+        }
     }
 }
