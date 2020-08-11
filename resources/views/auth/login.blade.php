@@ -13,7 +13,7 @@
         <div class="logo-box">
             <img src="{{ asset('images/netbiz_logo.png') }}" alt="" class="logo">
         </div>
-        
+
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
@@ -44,10 +44,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="remember-me" class="text-info"><span>Remember me</span> <span>
-
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember-me" {{ old('remember') ? 'checked' : '' }}>
-                                </span>
+                                <label for="remember-me" class="text-info">Remember Me</label>
+                                    <span>
+                                        <input class="form-check-input" type="checkbox" name="remember" id="remember-me" {{ old('remember') ? 'checked' : '' }}>
+                                    </span>
 
                                 </label><br>
                                 <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
