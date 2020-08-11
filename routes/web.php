@@ -22,6 +22,8 @@ Route::middleware('verified')->group(function() {
 	Route::prefix('account')->group(function() {
 
 	    Route::get('/','Customer\HomeController@index')->name('account.home');
+	    
+	    Route::get('/referals/{type?}','Customer\HomeController@referals')->name('account.referals');
 
 	});
 

@@ -86,7 +86,7 @@
 
       <!-- Referals Link -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('account.home') }}">
+        <a class="nav-link" href="{{ route('account.referals') }}">
           <i class="fas fa-fw fa-users"></i>
           <span>Referals</span></a>
       </li>
