@@ -42,12 +42,7 @@ class HomeController extends Controller
     	$firstIndirectReferalsCounter = $user->firstIndirectReferals();
     	$secondIndirectReferalsCounter = $user->secondIndirectReferals();
     	$thirdIndirectReferalsCounter = $user->thirdIndirectReferals();
-
-    	$data['referalsCounter'] = $referalsCounter->count();
-    	$data['directReferalsCount'] = $directReferalsCounter->count();
-    	$data['firstIndirectReferalsCount'] = $firstIndirectReferalsCounter->count();
-    	$data['secondIndirectReferalsCount'] = $secondIndirectReferalsCounter->count();
-    	$data['thirdIndirectReferalsCount'] = $secondIndirectReferalsCounter->count();
+    	
 
     	$referal = $user->referals();
 
@@ -57,11 +52,39 @@ class HomeController extends Controller
 
     	$searchQuery = request()->input('query');
     	if (!empty($searchQuery)) {
-    		# code...
+    		$referal->whereIn('refered_user_id',function($query) use ($searchQuery) {
+    			$query->select('id')->from('users');
+    			$query->where('name','like','%'.$searchQuery.'%');
+    			$query->orWhere('username',$searchQuery);
+    			$query->orWhere('email',$searchQuery);
+    			$query->orWhere('phone',$searchQuery);
+    		});
     	}
 
-    	$data['referals'] = $referal->latest()->paginate(2);
+    	$referral_type = request()->input('referral_type');
+    	if (!empty($referral_type)) {
+    		$referal->where('referral_type',$referral_type);
+    	}
+
+    	$date_from = request()->input('date_from');
+    	$date_to = request()->input('date_to');
+    	if (!empty($date_from) && empty($date_to)) {
+    		$referal->whereDate('created_at',$date_from);
+    	}
+    	if (!empty($date_from) && !empty($date_to)) {
+    		$referal->whereBetween('created_at',[$date_from,$date_to]);
+    	}
+
+    	$data['referalsCounter'] = $referalsCounter->count();
+    	$data['directReferalsCount'] = $directReferalsCounter->count();
+    	$data['firstIndirectReferalsCount'] = $firstIndirectReferalsCounter->count();
+    	$data['secondIndirectReferalsCount'] = $secondIndirectReferalsCounter->count();
+    	$data['thirdIndirectReferalsCount'] = $secondIndirectReferalsCounter->count();
+
+    	$data['referals'] = $referal->latest()->paginate(20);
 
         return view('customer.referals',$data);
+
+
     }
 }

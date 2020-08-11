@@ -93,11 +93,9 @@
 
   </div>
 
-@if($referals->count())
+<div class="card mb-4 shadow">
 
-<div class="card">
-  <form class="card-header bg-white" method="get">
-
+  <form class="card-body bg-white form-search" method="get">
     <div class="row">
       <div class="col-md">
         <div class="form-inline">
@@ -137,7 +135,7 @@
 
           <div class="form-group ml-3">
             <div class="input-group">
-              <input type="text" name="date_from" value="{{ request()->input('date_from') }}" placeholder="Date From" id="" class="form-control form-control-sm">
+              <input type="text" name="date_from" value="{{ request()->input('date_from') }}" placeholder="Date From" id="" class="form-control form-control-sm date_from">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fa fa-calendar"></span>
@@ -148,7 +146,7 @@
 
           <div class="form-group ml-3">
             <div class="input-group">
-              <input type="text" name="date_to" value="{{ request()->input('date_to') }}" placeholder="Date To" id="" class="form-control form-control-sm">
+              <input type="text" name="date_to" value="{{ request()->input('date_to') }}" placeholder="Date To" id="" class="form-control form-control-sm date_to">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fa fa-calendar"></span>
@@ -160,13 +158,21 @@
         </div>
       </div>
       <div class="col-md-1">
-        <button class="btn btn-sm btn-primary">
+        <button class="btn btn-sm btn-primary btn-search" type="button">
           <span class="fa fa-search"></span>
         </button>
       </div>
     </div>
     
   </form>
+  
+</div>
+
+
+@if($referals->count())
+
+<div class="card shadow">
+  
   <div class="table-responsive">
     <table class="table">
       <thead>
@@ -181,7 +187,7 @@
         @foreach($referals as $referal)
           <tr>
             <td>{{ formatedDate($referal->created_at) }}</td>
-            <td>{{ $referal->user->name }}</td>
+            <td>{{ $referal->userRefered->name }}</td>
             <td>{{ $referal->referalType() }}</td>
             <td>
               <span class="text-success">+{{ money($referal->amount) }}</span>

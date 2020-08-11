@@ -17,8 +17,57 @@
 <link href="{{ asset('customer/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   {{-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> --}}
 
+  <link rel="stylesheet" href="{{ asset('plugins/jquery-ui/jquery-ui.min.css') }}">
+
   <!-- Custom styles for this template-->
 <link href="{{ asset('customer/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+  <!-- Bootstrap core JavaScript-->
+<script src="{{asset('customer/vendor/jquery/jquery.min.js')}}"></script>
+
+<script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
+<script src="{{asset('customer/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+  <!-- Core plugin JavaScript-->
+<script src="{{ asset('customer/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+  <!-- Custom scripts for all pages-->
+<script src="{{ asset('customer/js/sb-admin-2.min.js')}}"></script>
+
+<script>
+  $(function() {
+
+    $('.date_from').datepicker({
+      dateFormat:'yy-mm-dd',
+      changeMonth:true,
+      changeYear:true
+    });
+    $('.date_to').datepicker({
+      dateFormat:'yy-mm-dd',
+      changeMonth:true,
+      changeYear:true
+    });
+
+    $('.btn-search').on('click', function() {
+      var dateFrom = $.trim($('.date_from').val());
+      var dateTo = $.trim($('.date_to').val());
+      var submitForm = true;
+
+      if(dateFrom.length == 0 && dateTo.length > 0) {
+        submitForm = false;
+        alert('Date From Required');
+      }
+
+      if (submitForm) {
+        $('.form-search').trigger('submit');
+      }
+
+    });
+
+  });
+</script>
+
 
 <style>
     .menu-avatar {
@@ -324,15 +373,6 @@
 
   <form style="display: none;" action="{{ url('/logout') }}" id="logoutForm" method="post">@csrf</form>
 
-  <!-- Bootstrap core JavaScript-->
-<script src="{{asset('customer/vendor/jquery/jquery.min.js')}}"></script>
-<script src="{{asset('customer/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
-  <!-- Core plugin JavaScript-->
-<script src="{{ asset('customer/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-  <!-- Custom scripts for all pages-->
-<script src="{{ asset('customer/js/sb-admin-2.min.js')}}"></script>
 
 <script>
   $(function() {
