@@ -16,7 +16,7 @@
     <!-- Owl carousel -->
     <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/owl.theme.css') }}">
-    
+
     <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/nivo-lightbox.css') }}">
     <!-- Animate -->
@@ -36,10 +36,10 @@
     <script src="{{ asset('assets/js/jquery.nav.js') }}"></script>
     <script src="{{ asset('assets/js/scrolling-nav.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>  
-    <script src="{{ asset('assets/js/nivo-lightbox.js') }}"></script>     
-    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>     
-    <script src="{{ asset('assets/js/waypoints.min.js') }}"></script>   
+    <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('assets/js/nivo-lightbox.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('assets/js/waypoints.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.slicknav.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('assets/js/form-validator.min.js') }}"></script>
@@ -49,12 +49,12 @@
   <body>
 
     <!-- Header Section Start -->
-    <header id="hero-area">    
+    <header id="hero-area">
       <!-- Navbar Start -->
       <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar">
         <div class="container">
           <!-- Brand and toggle get grouped for better mobile display -->
-          <a href="{{ route('public.home') }}" class="navbar-brand"><img src="{{ asset('images/netbiz_logo.png') }}" alt="" style="max-width: 185px"></a>       
+          <a href="{{ route('public.home') }}" class="navbar-brand"><img src="{{ asset('images/netbiz_logo.png') }}" alt="" style="max-width: 185px"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <i class="lni-menu"></i>
           </button>
@@ -62,51 +62,51 @@
             <ul class="navbar-nav mr-auto w-100 justify-content-end clearfix">
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('public.home') }}">Home</a>
-              </li> 
+              </li>
               @guest
               <li class="nav-item">
                 <a class="nav-link active" href="{{ route('register') }}">Register</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="{{ route('login') }}">Login</a>
-              </li> 
-              @endguest 
+              </li>
+              @endguest
 
               @auth
 
               <li class="nav-item">
                 <a class="nav-link active" href="{{ route('account.home') }}">Dashboard</a>
-              </li> 
+              </li>
 
               @endauth
             </ul>
           </div>
         </div>
-      </nav>               
+      </nav>
     </header>
-    <!-- Header Section End --> 
+    <!-- Header Section End -->
 
     <!-- Page header Start -->
     <section class="page-header">
-      <div class="container">      
+      <div class="container">
         <div class="row justify-content-md-center">
           <div class="col-md-12">
             <div class="breadcrumb-wrapper text-center">
               <h2>@yield('page_title')</h2>
             </div>
           </div>
-        </div> 
-      </div> 
+        </div>
+      </div>
     </section>
     <!-- Page header End -->
-    
+
     <!-- Blog Section Start  -->
     <div id="blog-single">
       <div class="container">
 
         @yield('content')
 
-        
+
       </div>
     </div>
     <!-- Blog Section End  -->
@@ -120,7 +120,7 @@
               <img src="assets/img/logo.png" alt="">
             </div>
           </div>
-          <div class="col-lg-4 col-md-4 col-xs-12">     
+          <div class="col-lg-4 col-md-4 col-xs-12">
             <div class="social-icon text-center">
               <a class="facebook" href="#"><i class="lni-facebook-filled"></i></a>
               <a class="twitter" href="#"><i class="lni-twitter-filled"></i></a>
@@ -129,8 +129,8 @@
             </div>
           </div>
           <div class="col-lg-4 col-md-5 col-xs-12">
-            <p class="float-right">Designed and Developed by <a href="http://uideck.com" rel="nofollow">UIdeck</a></p>
-          </div> 
+            <p class="float-right">Copyright &copy; Netbiz Agency 2020</a></p>
+          </div>
         </div>
       </div>
     </div>
@@ -140,13 +140,13 @@
     <a href="#" class="back-to-top">
       <i class="lni-arrow-up"></i>
     </a>
-    
+
     <!-- Preloader -->
     <div id="preloader">
       <div class="loader" id="loader-1"></div>
     </div>
     <!-- End Preloader -->
-    
-      
+
+
   </body>
 </html>

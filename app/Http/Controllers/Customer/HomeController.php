@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Payment;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -20,6 +21,27 @@ class HomeController extends Controller
     }
     public function deposits(){
         return view('customer.deposits');
+    }
+
+    //simulating payments
+    public function payments(Request $request){
+        $validatedData = $request->validate([
+            'phone' => 'required',
+            'amount' => 'required',
+            'trans_no'=> 'required',
+            'sender_name'=> 'required',
+            'trans_date'=> 'required'
+        ]);
+
+        $payment=new Payment();
+        $payment->phone=$request->input('phone');
+        $payment->amount=$request->input('amount');
+        $payment->sender_name=$request->input('sender_name');
+        $payment->trans_date=$request->input('trans_date');
+        $payment->trans_no=$request->input('trans_no');
+        $payment->save();
+
+        return redirect('/account/deposits');
     }
 
     public function referals($type = null) {
