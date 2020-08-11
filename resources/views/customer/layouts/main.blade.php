@@ -272,6 +272,8 @@
 
           @yield('content')
 
+          <br>
+
         </div>
         <!-- /.container-fluid -->
 

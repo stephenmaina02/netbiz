@@ -75,6 +75,7 @@ class RegisterController extends Controller
                 \DB::beginTransaction();
 
 
+                $notifiables = [];
 
 
                 $user = User::create([
@@ -92,7 +93,7 @@ class RegisterController extends Controller
 
                     //insert direct
 
-                    UserRelation::create([
+                    $relShip = UserRelation::create([
                         'user_id' => $parentLevel1->id,
                         'refered_user_id' => $user->id,
                         'referral_type' => 'd',
@@ -105,7 +106,7 @@ class RegisterController extends Controller
 
                         $parentLevel2 = $parentLevel1->referedBy;
 
-                        UserRelation::create([
+                        $relShip = UserRelation::create([
                             'user_id' => $parentLevel2->id,
                             'refered_user_id' => $user->id,
                             'referral_type' => 'fid',
@@ -119,7 +120,7 @@ class RegisterController extends Controller
 
                             $parentLevel3 = $parentLevel2->referedBy;
 
-                            UserRelation::create([
+                            $relShip = UserRelation::create([
                                 'user_id' => $parentLevel3->id,
                                 'refered_user_id' => $user->id,
                                 'referral_type' => 'sid',
@@ -132,7 +133,7 @@ class RegisterController extends Controller
 
                                 $parentLevel4 = $parentLevel3->referedBy;
 
-                                UserRelation::create([
+                                $relShip = UserRelation::create([
                                     'user_id' => $parentLevel4->id,
                                     'refered_user_id' => $user->id,
                                     'referral_type' => 'tid',
