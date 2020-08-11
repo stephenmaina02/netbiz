@@ -13,9 +13,11 @@ class AddReferedUserIdToUserRelations extends Migration
      */
     public function up()
     {
-        Schema::table('user_relations', function (Blueprint $table) {
-            $table->integer('refered_user_id');
-        });
+        // Schema::table('user_relations', function (Blueprint $table) {
+        //     if (Schema::hasColumn('user_relations','')) {
+        //         $table->integer('refered_user_id');
+        //     }
+        // });
     }
 
     /**

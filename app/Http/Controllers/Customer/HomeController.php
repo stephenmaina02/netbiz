@@ -48,7 +48,16 @@ class HomeController extends Controller
 
     	$referal = $user->referals();
 
-    	$data['referals'] = $referal->latest()->paginate(20);
+    	if ($type !== 'a') {
+    		$referal->where('referral_type',$type);
+    	}
+
+    	$searchQuery = request()->input('query');
+    	if (!empty($searchQuery)) {
+    		# code...
+    	}
+
+    	$data['referals'] = $referal->latest()->paginate(2);
 
         return view('customer.referals',$data);
     }
