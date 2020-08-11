@@ -68,7 +68,7 @@
 
       <!-- Deposit link -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('account.home') }}">
+        <a class="nav-link" href="{{ route('account.deposits') }}">
           <i class="fas fa-fw fa-upload"></i>
           <span>Deposit</span></a>
       </li>

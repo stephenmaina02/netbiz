@@ -18,6 +18,9 @@ class HomeController extends Controller
     	$data['user'] = $user;
         return view('customer.index',$data);
     }
+    public function deposits(){
+        return view('customer.deposits');
+    }
 
     public function referals($type = null) {
     	$types = referalTypes();
