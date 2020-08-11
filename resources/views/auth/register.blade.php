@@ -70,7 +70,7 @@
           <div class="col-md-8">
             <div class="form-group">
               <label for="">Refered By</label>
-              <input type="text" autocomplete="off" value="{{ old('refered_by') }}" class="form-control" id="Username" name="refered_by" placeholder="Refered By">
+              <input type="text" autocomplete="off" value="{{ request()->input('ref') == null ? old('refered_by') : request()->input('ref') }}" class="form-control" id="Username" name="refered_by" placeholder="Refered By">
 
               @error('refered_by')
                 <small class="text-danger">{{$message}}</small>
