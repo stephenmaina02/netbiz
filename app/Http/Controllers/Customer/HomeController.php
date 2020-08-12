@@ -19,6 +19,33 @@ class HomeController extends Controller
     	$data['user'] = $user;
         return view('customer.index',$data);
     }
+<<<<<<< HEAD
+=======
+    public function deposits(){
+        return view('customer.deposits');
+    }
+
+    //simulating payments
+    public function payments(Request $request){
+        $validatedData = $request->validate([
+            'phone' => 'required',
+            'amount' => 'required',
+            'trans_no'=> 'required',
+            'sender_name'=> 'required',
+            'trans_date'=> 'required'
+        ]);
+
+        $payment=new Payment();
+        $payment->phone=$request->input('phone');
+        $payment->amount=$request->input('amount');
+        $payment->sender_name=$request->input('sender_name');
+        $payment->trans_date=$request->input('trans_date');
+        $payment->trans_no=$request->input('trans_no');
+        $payment->save();
+
+        return redirect()->route('account.deposits');
+    }
+>>>>>>> 18eccec59073ed7edccb164dd3361b65e23008d1
 
     public function referals($type = null) {
     	$types = referalTypes();

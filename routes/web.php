@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','PublicController@index')->name('public.home');
+Route::get('/faq','PublicController@getfaq')->name('public.faq');
 
 Auth::routes(['verify' => true]);
 
@@ -40,5 +41,18 @@ Route::prefix('control')->group(function() {
 
     Route::get('/','Admin\HomeController@index')->name('admin.home');
     Route::get('/registeredusers', 'Admin\HomeController@registeredusers')->name('admin.users');
+<<<<<<< HEAD
 
+=======
+    Route::get('/user/{id}', 'Admin\HomeController@getuser')->name('admin.get-user');
+    Route::put('/updateuserstatus/{id}', 'Admin\HomeController@updateuser')->name('admin.updateuser');
+    Route::get('/income', 'Admin\HomeController@getincomes')->name('admin.income');
+    Route::get('/payments', 'Admin\HomeController@getpayments')->name('admin.payments');
+    Route::get('/getprofile/{id}', 'Admin\HomeController@getprofile')->name('admin.getprofile');
+    Route::put('/updateprofile/{id}', 'Admin\HomeController@updateprofile')->name('admin.updateprofile');
+    Route::get('/faq','Admin\HomeController@getfaq')->name('admin.faq');
+    Route::post('/faq','Admin\HomeController@savefaq')->name('admin.savefaq');
+    Route::get('/charges','Admin\HomeController@getcharges')->name('admin.charges');
+    Route::post('/charges','Admin\HomeController@savecharges')->name('admin.savecharges');
+>>>>>>> 18eccec59073ed7edccb164dd3361b65e23008d1
 });

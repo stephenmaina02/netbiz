@@ -29,7 +29,7 @@
 
 </head>
 
-<body style="background-color: #dff8e3">
+<body style="background-color: #f7fcf8">
 
     <!-- Header Area wrapper Starts -->
     <header id="header-wrap">
@@ -65,7 +65,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('public.faq') }}">
                              FAQ
                             </a>
                         </li>
