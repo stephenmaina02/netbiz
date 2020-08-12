@@ -19,8 +19,7 @@ class HomeController extends Controller
     	$data['user'] = $user;
         return view('customer.index',$data);
     }
-<<<<<<< HEAD
-=======
+
     public function deposits(){
         return view('customer.deposits');
     }
@@ -45,7 +44,6 @@ class HomeController extends Controller
 
         return redirect()->route('account.deposits');
     }
->>>>>>> 18eccec59073ed7edccb164dd3361b65e23008d1
 
     public function referals($type = null) {
     	$types = referalTypes();
