@@ -5,57 +5,72 @@
 
 @section('content')
 <div class="row">
-    <div class="col-xl-3 mb-30">
-        <div class="card-box height-100-p widget-style1">
-            <div class="d-flex flex-wrap align-items-center">
-                <div class="progress-data">
-                    <div id="chart"></div>
-                </div>
-                <div class="widget-data">
-                    <div class="h4 mb-0">2020</div>
-                    <div class="weight-600 font-14">Contact</div>
-                </div>
-            </div>
+<div class="col-xl-6 col-md-6 mb-4">
+    <a href="" class="card border-left-info shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Users Registered </div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">500</div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-users fa-2x text-gray-300"></i>
+          </div>
         </div>
-    </div>
-    <div class="col-xl-3 mb-30">
-        <div class="card-box height-100-p widget-style1">
-            <div class="d-flex flex-wrap align-items-center">
-                <div class="progress-data">
-                    <div id="chart2"></div>
-                </div>
-                <div class="widget-data">
-                    <div class="h4 mb-0">400</div>
-                    <div class="weight-600 font-14">Deals</div>
-                </div>
-            </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-xl-6 col-md-6 mb-4">
+    <a href="" class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Income</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">Ksh. 500000</div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-money fa-2x text-gray-300"></i>
+          </div>
         </div>
-    </div>
-    <div class="col-xl-3 mb-30">
-        <div class="card-box height-100-p widget-style1">
-            <div class="d-flex flex-wrap align-items-center">
-                <div class="progress-data">
-                    <div id="chart3"></div>
-                </div>
-                <div class="widget-data">
-                    <div class="h4 mb-0">350</div>
-                    <div class="weight-600 font-14">Campaign</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 mb-30">
-        <div class="card-box height-100-p widget-style1">
-            <div class="d-flex flex-wrap align-items-center">
-                <div class="progress-data">
-                    <div id="chart4"></div>
-                </div>
-                <div class="widget-data">
-                    <div class="h4 mb-0">$6060</div>
-                    <div class="weight-600 font-14">Worth</div>
-                </div>
-            </div>
-        </div>
-    </div>
+      </div>
+    </a>
+  </div>
 </div>
+<div class="row">
+  <div class="col-xl-6 col-md-6 mb-4">
+    <a href="" class="card border-left-default shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-default text-uppercase mb-1">Total Paid Out</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">Ksh. 250000</div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-xl-6 col-md-6 mb-4">
+    <a href="" class="card border-left-primary shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Adverts Posted</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-briefcase fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+
+
+</div>
+
 @endsection

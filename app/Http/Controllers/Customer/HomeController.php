@@ -41,7 +41,7 @@ class HomeController extends Controller
         $payment->trans_no=$request->input('trans_no');
         $payment->save();
 
-        return redirect('/account/deposits');
+        return redirect()->route('account.deposits');
     }
 
     public function referals($type = null) {

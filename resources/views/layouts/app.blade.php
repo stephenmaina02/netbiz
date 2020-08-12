@@ -63,12 +63,15 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('public.home') }}">Home</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('public.faq') }}">FAQ</a>
+              </li>
               @guest
               <li class="nav-item">
-                <a class="nav-link active" href="{{ route('register') }}">Register</a>
+                <a class="nav-link" href="{{ route('register') }}">Register</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="{{ route('login') }}">Login</a>
+                <a class="nav-link" href="{{ route('login') }}">Login</a>
               </li>
               @endguest
 
@@ -117,7 +120,7 @@
         <div class="row">
           <div class="col-lg-4 col-md-3 col-xs-12">
             <div class="footer-logo">
-              <img src="assets/img/logo.png" alt="">
+              <img src="{{ asset('images/netbiz_logo.png') }}" style="max-width: 175px">
             </div>
           </div>
           <div class="col-lg-4 col-md-4 col-xs-12">
