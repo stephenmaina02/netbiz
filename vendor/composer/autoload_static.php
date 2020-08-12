@@ -35,6 +35,7 @@ class ComposerStaticInitdd6296fc2e97c8b3b53a0985c48f16fe
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         'b4e3f29b106af37a2bb239f73cdf68c7' => __DIR__ . '/../..' . '/app/helpers.php',
+        'dd15357c4f9524bdeb9aa632515cea4e' => __DIR__ . '/../..' . '/app/Mpesa.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -135,6 +136,7 @@ class ComposerStaticInitdd6296fc2e97c8b3b53a0985c48f16fe
             'GuzzleHttp\\Psr7\\' => 16,
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
+            'Gathuku\\Mpesa\\' => 14,
         ),
         'F' => 
         array (
@@ -403,6 +405,10 @@ class ComposerStaticInitdd6296fc2e97c8b3b53a0985c48f16fe
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
+        'Gathuku\\Mpesa\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gathuku/laravelmpesa/src',
+        ),
         'Fruitcake\\Cors\\' => 
         array (
             0 => __DIR__ . '/..' . '/fruitcake/laravel-cors/src',
@@ -514,6 +520,7 @@ class ComposerStaticInitdd6296fc2e97c8b3b53a0985c48f16fe
         'App\\Console\\Commands\\DbUpdater' => __DIR__ . '/../..' . '/app/Console/Commands/DbUpdater.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Earning' => __DIR__ . '/../..' . '/app/Earning.php',
+        'App\\Events\\PaymentMade' => __DIR__ . '/../..' . '/app/Events/PaymentMade.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\FAQ' => __DIR__ . '/../..' . '/app/FAQ.php',
         'App\\Http\\Controllers\\Admin\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/HomeController.php',
@@ -541,6 +548,8 @@ class ComposerStaticInitdd6296fc2e97c8b3b53a0985c48f16fe
         'App\\Listeners\\LogVerifiedUser' => __DIR__ . '/../..' . '/app/Listeners/LogVerifiedUser.php',
         'App\\LoginSession' => __DIR__ . '/../..' . '/app/LoginSession.php',
         'App\\Notifications\\NewReferal' => __DIR__ . '/../..' . '/app/Notifications/NewReferal.php',
+        'App\\Notifications\\PaymentRecieved' => __DIR__ . '/../..' . '/app/Notifications/PaymentRecieved.php',
+        'App\\Notifications\\PaymentSent' => __DIR__ . '/../..' . '/app/Notifications/PaymentSent.php',
         'App\\Payment' => __DIR__ . '/../..' . '/app/Payment.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -1688,6 +1697,10 @@ class ComposerStaticInitdd6296fc2e97c8b3b53a0985c48f16fe
         'Fideloper\\Proxy\\TrustedProxyServiceProvider' => __DIR__ . '/..' . '/fideloper/proxy/src/TrustedProxyServiceProvider.php',
         'Fruitcake\\Cors\\CorsServiceProvider' => __DIR__ . '/..' . '/fruitcake/laravel-cors/src/CorsServiceProvider.php',
         'Fruitcake\\Cors\\HandleCors' => __DIR__ . '/..' . '/fruitcake/laravel-cors/src/HandleCors.php',
+        'Gathuku\\Mpesa\\Console\\InstallMpesa' => __DIR__ . '/..' . '/gathuku/laravelmpesa/src/Console/InstallMpesa.php',
+        'Gathuku\\Mpesa\\Facades\\Mpesa' => __DIR__ . '/..' . '/gathuku/laravelmpesa/src/Facades/Mpesa.php',
+        'Gathuku\\Mpesa\\Mpesa' => __DIR__ . '/..' . '/gathuku/laravelmpesa/src/Mpesa.php',
+        'Gathuku\\Mpesa\\MpesaServiceProvider' => __DIR__ . '/..' . '/gathuku/laravelmpesa/src/MpesaServiceProvider.php',
         'GuzzleHttp\\Client' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Client.php',
         'GuzzleHttp\\ClientInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/ClientInterface.php',
         'GuzzleHttp\\Cookie\\CookieJar' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/CookieJar.php',

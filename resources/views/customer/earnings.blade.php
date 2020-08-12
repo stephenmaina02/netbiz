@@ -100,22 +100,11 @@
       <div class="col-md">
         <div class="form-inline">
 
-          <div class="form-group">
-            <div class="input-group">
-              <input type="text" name="query" value="{{ request()->input('query') }}" placeholder="Search" id="" class="form-control form-control-sm">
-              <div class="input-group-append">
-                <div class="input-group-text">
-                  <span class="fa fa-search"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <div class="form-group ml-3">
             <div class="input-group">
               <select name="referral_type" id="" class="form-control form-control-sm">
                 <option value="">Please Select</option>
-                @foreach(referalTypes() as $key => $value)
+                @foreach(referalEarningTypes() as $key => $value)
 
                   @if($key === request('referral_type'))
                     <option selected value="{{ $key }}">{{ $value }}</option>
@@ -169,7 +158,65 @@
 </div>
 
 
+@if($earnings->count())
 
+
+
+<div class="card shadow">
+  
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr class="bg-primary">
+          <td class="text-white">Date</td>
+          <td class="text-white">Category</td>
+          <td class="text-white">From</td>
+          <td class="text-white">Amount Earned</td>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach($earnings as $earning)
+
+          
+
+          <tr>
+            <td>{{ formatedDate($earning->created_at) }}</td>
+            
+            @if($earning->source_type === 'user_relation')
+
+            @php
+
+              $referal = $earning->source;
+              
+            @endphp
+
+            <td>Referal({{ $referal->referalType() }})</td>
+            <td>{{ $referal->userRefered->name }}</td>
+
+            @else
+
+            <td></td>
+            <td></td>
+
+            @endif
+            <td>
+              <span class="text-success">+{{ money($earning->amount) }}</span>
+            </td>
+          </tr>
+        @endforeach
+      </tbody>
+    </table>
+    <div class="card-footer bg-white">
+      {{ $earnings->links() }}
+    </div>
+  </div>
+</div>
+
+@else
+
+<div class="alert alert-danger">No Earnings</div>
+
+@endif
 
 
 @endsection

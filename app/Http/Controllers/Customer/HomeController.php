@@ -126,53 +126,15 @@ class HomeController extends Controller
         $data['title'] = $types[$type];
         $data['page_title'] = $types[$type];
 
-        $earning = $user->earnings();
-        $earningCounter = $user->earnings();
-        $directReferalsEarning = $user->earnings();
-        $firstIndirectReferalsEarning = $user->earnings();
-        $secondIndirectReferalsEarning = $user->earnings();
-        $thirdIndirectReferalsEarning = $user->earnings();
+        $earning = $this->getEarnings($user,'a');
+        $earningCounter = $this->getEarnings($user,'a');
+        $directReferalsEarning = $this->getEarnings($user,'d');
+        $firstIndirectReferalsEarning = $this->getEarnings($user,'fid');
+        $secondIndirectReferalsEarning = $this->getEarnings($user,'sid');
+        $thirdIndirectReferalsEarning = $this->getEarnings($user,'tid');
+
 
         
-
-        if ($type !== 'a') {
-            
-            $earning = $user->earnings()->whereIn('user_id', function($query) use ($type) {
-                $query->select('user_id')->from('user_relations');
-                $query->where('referral_type',$type);
-            });
-        }
-
-        $searchQuery = request()->input('query');
-        if (!empty($searchQuery)) {
-            $earning = $user->earnings()->whereIn('user_id', function($query) use ($searchQuery) {
-                $query->select('user_id')->from('user_relations');
-                $query->whereIn('refered_user_id',function($query) use ($searchQuery) {
-                    $query->select('id')->from('users');
-                    $query->where('name','like','%'.$searchQuery.'%');
-                    $query->orWhere('username',$searchQuery);
-                    $query->orWhere('email',$searchQuery);
-                    $query->orWhere('phone',$searchQuery);
-                });
-            });
-        }
-
-        $referral_type = request()->input('referral_type');
-        if (!empty($referral_type)) {
-            $earning = $user->earnings()->whereIn('user_id', function($query) use ($referral_type) {
-                $query->select('user_id')->from('user_relations');
-                $query->where('referral_type',$referral_type);
-            });
-        }
-
-        $date_from = request()->input('date_from');
-        $date_to = request()->input('date_to');
-        if (!empty($date_from) && empty($date_to)) {
-            $earning->whereDate('created_at',$date_from);
-        }
-        if (!empty($date_from) && !empty($date_to)) {
-            $earning->whereBetween('created_at',[$date_from,$date_to]);
-        }
 
         $data['referalsEarning'] = $earningCounter->sum('amount');
         $data['directReferalsEarning'] = $directReferalsEarning->sum('amount');
@@ -186,4 +148,32 @@ class HomeController extends Controller
 
 
     }
+
+    private function getEarnings($user,$referral_type) {
+        $earning = $user->earnings();
+
+        if ($referral_type !== 'a') {
+
+            $earning->where(function($query) use ($referral_type) {
+                $query->where('source_type','user_relation');
+                $query->whereIn('source_id', function($query) use ($referral_type) {
+                    $query->select('id')->from('user_relations');
+                    $query->where('referral_type',$referral_type);
+                });
+            });
+            
+        }
+
+        $date_from = request()->input('date_from');
+        $date_to = request()->input('date_to');
+        if (!empty($date_from) && empty($date_to)) {
+            $earning->whereDate('created_at',$date_from);
+        }
+        if (!empty($date_from) && !empty($date_to)) {
+            $earning->whereBetween('created_at',[$date_from,$date_to]);
+        }
+
+        return $earning;
+    }
+
 }

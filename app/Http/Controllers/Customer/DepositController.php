@@ -63,6 +63,9 @@ class DepositController extends Controller
 
         		$amountPaid = $user->deposits()->sum('amount');
 
+                $deductions = 0;
+
+
         		if ($amountPaid >= regCharge()) {
 
         			$refereds = $user->refereds();
@@ -91,6 +94,7 @@ class DepositController extends Controller
         			]);
 
         			$income = regCharge() - ($refereds->sum('amount') + $amountForBonusAccount);
+
 
         			$income = Income::create([
         				'source_id' => $user->id,

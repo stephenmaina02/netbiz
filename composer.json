@@ -12,6 +12,7 @@
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
+        "gathuku/laravelmpesa": "^1.1",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.22.2",
         "laravel/tinker": "^2.0",
@@ -39,7 +40,8 @@
             "App\\": "app/"
         },
         "files" : [
-            "app/helpers.php"
+            "app/helpers.php",
+            "app/Mpesa.php"
         ],
         "classmap": [
             "database/seeds",

@@ -32,6 +32,7 @@ function referalEarningTypes($key = null) {
 		'fid' => 'First Indirect Earnings',
 		'sid' => 'Second Indirect Earnings',
 		'tid' => 'Third Indirect Earnings',
+		'b' => 'Bonuses',
 	];
 
 	if ($key == null) {

@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/test',function() {
+
+	new Mpesa();
+
+});
+
+
 Route::get('/','PublicController@index')->name('public.home');
 Route::get('/faq','PublicController@getfaq')->name('public.faq');
 
@@ -37,6 +44,7 @@ Route::middleware('verified')->group(function() {
 	});
 
 });
+
 Route::prefix('control')->group(function() {
 
     Route::get('/','Admin\HomeController@index')->name('admin.home');
