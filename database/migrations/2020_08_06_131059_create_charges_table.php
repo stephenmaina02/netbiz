@@ -16,7 +16,7 @@ class CreateChargesTable extends Migration
         Schema::create('charges', function (Blueprint $table) {
             $table->id();
             $table->string('type'); //eg reg fee, direct, indirect, withdraws and bonus50
-            $table->srting('code', 5);
+            $table->string('code', 5);
             $table->double('amount');
             $table->timestamps();
             $table->softDeletes();

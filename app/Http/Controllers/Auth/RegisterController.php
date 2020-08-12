@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\UserRelation;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::ACCOUNT_HOME;
 
     /**
      * Create a new controller instance.
@@ -50,8 +51,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:100'],
+            'username' => ['required', 'string', 'max:25','min:5', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'digits_between:9,12', 'unique:users'],
+            'refered_by' => ['nullable', 'exists:users,username'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -64,10 +68,106 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        if (array_key_exists('refered_by', $data)) {
+
+            try {
+
+                \DB::beginTransaction();
+
+
+                $notifiables = [];
+
+
+                $user = User::create([
+                    'name' => $data['name'],
+                    'username' => $data['username'],
+                    'phone' => $data['phone'],
+                    'refered_by' => $data['refered_by'],
+                    'email' => $data['email'],
+                    'password' => Hash::make($data['password']),
+                ]);
+
+                if ($user->referedBy()->exists()) {
+                    
+                    $parentLevel1 = $user->referedBy;
+
+                    //insert direct
+
+                    $relShip = UserRelation::create([
+                        'user_id' => $parentLevel1->id,
+                        'refered_user_id' => $user->id,
+                        'referral_type' => 'd',
+                        'amount' => directEarning(),
+                    ]);
+
+                    if ($parentLevel1->referedBy()->exists()) {
+
+                        //insert first indirect
+
+                        $parentLevel2 = $parentLevel1->referedBy;
+
+                        $relShip = UserRelation::create([
+                            'user_id' => $parentLevel2->id,
+                            'refered_user_id' => $user->id,
+                            'referral_type' => 'fid',
+                            'amount' => firstIndirectEarning(),
+                        ]);
+
+
+                        if ($parentLevel2->referedBy()->exists()) {
+
+                            //insert second indirect
+
+                            $parentLevel3 = $parentLevel2->referedBy;
+
+                            $relShip = UserRelation::create([
+                                'user_id' => $parentLevel3->id,
+                                'refered_user_id' => $user->id,
+                                'referral_type' => 'sid',
+                                'amount' => secondIndirectEarning(),
+                            ]);
+
+                            if ($parentLevel3->referedBy()->exists()) {
+
+                                //insert third indirect
+
+                                $parentLevel4 = $parentLevel3->referedBy;
+
+                                $relShip = UserRelation::create([
+                                    'user_id' => $parentLevel4->id,
+                                    'refered_user_id' => $user->id,
+                                    'referral_type' => 'tid',
+                                    'amount' => thirdIndirectEarning(),
+                                ]);
+
+                            }
+
+
+                        }
+
+                    }
+
+
+                }
+
+
+                \DB::commit();
+
+                return $user;
+                
+            } catch (Exception $e) {
+                \DB::rollback();
+            }
+            
+        } else {
+            return User::create([
+                'name' => $data['name'],
+                'username' => $data['username'],
+                'phone' => $data['phone'],
+                'refered_by' => $data['refered_by'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+        }
     }
 }

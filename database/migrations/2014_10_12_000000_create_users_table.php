@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->enum('role',['a','u'])->default('u');//a stands for admin, u stands for user
             $table->enum('super_admin',['y','n'])->default('n');// y stands for yes , n stands for no
             $table->enum('active',['y','n'])->default('n');
-            $table->string('invited_by',50)->nullable();
+            $table->string('refered_by',50)->nullable();
             $table->enum('banned',['y','n'])->default('n');
             $table->rememberToken();
             $table->timestamps();

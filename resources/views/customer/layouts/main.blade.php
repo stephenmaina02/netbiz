@@ -17,8 +17,57 @@
 <link href="{{ asset('customer/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   {{-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> --}}
 
+  <link rel="stylesheet" href="{{ asset('plugins/jquery-ui/jquery-ui.min.css') }}">
+
   <!-- Custom styles for this template-->
 <link href="{{ asset('customer/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+  <!-- Bootstrap core JavaScript-->
+<script src="{{asset('customer/vendor/jquery/jquery.min.js')}}"></script>
+
+<script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
+<script src="{{asset('customer/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+  <!-- Core plugin JavaScript-->
+<script src="{{ asset('customer/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+  <!-- Custom scripts for all pages-->
+<script src="{{ asset('customer/js/sb-admin-2.min.js')}}"></script>
+
+<script>
+  $(function() {
+
+    $('.date_from').datepicker({
+      dateFormat:'yy-mm-dd',
+      changeMonth:true,
+      changeYear:true
+    });
+    $('.date_to').datepicker({
+      dateFormat:'yy-mm-dd',
+      changeMonth:true,
+      changeYear:true
+    });
+
+    $('.btn-search').on('click', function() {
+      var dateFrom = $.trim($('.date_from').val());
+      var dateTo = $.trim($('.date_to').val());
+      var submitForm = true;
+
+      if(dateFrom.length == 0 && dateTo.length > 0) {
+        submitForm = false;
+        alert('Date From Required');
+      }
+
+      if (submitForm) {
+        $('.form-search').trigger('submit');
+      }
+
+    });
+
+  });
+</script>
+
 
 <style>
     .menu-avatar {
@@ -44,7 +93,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('çustomer.home') }}">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('account.home') }}">
         <div class="sidebar-brand-icon rotate-n-15">
           <div class="menu-avatar">
             <img src="{{ asset('images/netbiz_favicon.png') }}">
@@ -58,7 +107,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('çustomer.home') }}">
+        <a class="nav-link" href="{{ route('account.home') }}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -68,7 +117,7 @@
 
       <!-- Deposit link -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('çustomer.home') }}">
+        <a class="nav-link" href="{{ route('account.deposit.form') }}">
           <i class="fas fa-fw fa-upload"></i>
           <span>Deposit</span></a>
       </li>
@@ -76,7 +125,7 @@
 
       <!-- Deposit History Link -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('çustomer.home') }}">
+        <a class="nav-link" href="{{ route('account.deposits') }}">
           <i class="fas fa-fw fa-clock"></i>
           <span>Deposit History</span></a>
       </li>
@@ -86,7 +135,7 @@
 
       <!-- Referals Link -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('çustomer.home') }}">
+        <a class="nav-link" href="{{ route('account.referals') }}">
           <i class="fas fa-fw fa-users"></i>
           <span>Referals</span></a>
       </li>
@@ -96,14 +145,14 @@
 
       <!-- Earning Link -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('çustomer.home') }}">
+        <a class="nav-link" href="{{ route('account.earnings') }}">
           <i class="fas fa-fw fa-dollar-sign"></i>
           <span>Earnings</span></a>
       </li>
 
       <!-- Withdrawals Link -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('çustomer.home') }}">
+        <a class="nav-link" href="{{ route('account.home') }}">
           <i class="fas fa-fw fa-download"></i>
           <span>Withdrawals</span></a>
       </li>
@@ -242,8 +291,8 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="{{ asset('images/netbiz_favicon.png') }}">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
+                <img class="img-profile rounded-circle" src="{{ asset('images/avatar.webp') }}">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -269,6 +318,11 @@
 
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800">@yield('page_title')</h1>
+
+          @yield('content')
+
+          <br>
+
         </div>
         <!-- /.container-fluid -->
 
@@ -281,7 +335,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
+            <span>Copyright &copy; <a href="{{ route('public.home') }}" class="text-info">{{ config('app.name') }}</a></span>
           </div>
         </div>
       </footer>
@@ -311,21 +365,22 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="#" id="logoutBtn">Logout</a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Bootstrap core JavaScript-->
-<script src="{{asset('customer/vendor/jquery/jquery.min.js')}}"></script>
-<script src="{{asset('customer/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <form style="display: none;" action="{{ url('/logout') }}" id="logoutForm" method="post">@csrf</form>
 
-  <!-- Core plugin JavaScript-->
-<script src="{{ asset('customer/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
-  <!-- Custom scripts for all pages-->
-<script src="{{ asset('customer/js/sb-admin-2.min.js')}}"></script>
+<script>
+  $(function() {
+    $('#logoutBtn').on('click', function() {
+      $('#logoutForm').trigger('submit');
+    });
+  });
+</script>
 
 </body>
 

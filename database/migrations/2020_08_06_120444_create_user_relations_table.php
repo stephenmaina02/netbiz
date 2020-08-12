@@ -18,6 +18,7 @@ class CreateUserRelationsTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->enum('referral_type',['d','fid','sid','tid']);//d-direct, fid-first indirect, sid-second indirect and tid-third indirect referral
+            $table->integer('refered_user_id');
             $table->double('amount');
             $table->timestamps();
             $table->softDeletes();
