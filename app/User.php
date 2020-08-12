@@ -48,6 +48,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\UserRelation','user_id','id');
     }
 
+    public function refereds() {
+        return $this->hasMany('App\UserRelation','refered_user_id','id');
+    }
+
     public function directReferals() {
         return $this->referals()->where('referral_type','d');
     }
@@ -73,9 +77,16 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function totalEarnings() {
-        return $this->earnings()->where('type','e')->sum('amount');
+        return $this->earnings()->sum('amount');
     }
 
+    public function payments() {
+        return $this->hasMany('App\Payment','phone','phone');
+    }
+
+    public function deposits() {
+        return $this->hasMany('App\Payment','phone','phone')->where('type','d');
+    }
 
 
 }

@@ -97,7 +97,7 @@ class RegisterController extends Controller
                         'user_id' => $parentLevel1->id,
                         'refered_user_id' => $user->id,
                         'referral_type' => 'd',
-                        'amount' => 500,
+                        'amount' => directEarning(),
                     ]);
 
                     if ($parentLevel1->referedBy()->exists()) {
@@ -110,7 +110,7 @@ class RegisterController extends Controller
                             'user_id' => $parentLevel2->id,
                             'refered_user_id' => $user->id,
                             'referral_type' => 'fid',
-                            'amount' => 150,
+                            'amount' => firstIndirectEarning(),
                         ]);
 
 
@@ -124,7 +124,7 @@ class RegisterController extends Controller
                                 'user_id' => $parentLevel3->id,
                                 'refered_user_id' => $user->id,
                                 'referral_type' => 'sid',
-                                'amount' => 100,
+                                'amount' => secondIndirectEarning(),
                             ]);
 
                             if ($parentLevel3->referedBy()->exists()) {
@@ -137,7 +137,7 @@ class RegisterController extends Controller
                                     'user_id' => $parentLevel4->id,
                                     'refered_user_id' => $user->id,
                                     'referral_type' => 'tid',
-                                    'amount' => 100,
+                                    'amount' => thirdIndirectEarning(),
                                 ]);
 
                             }

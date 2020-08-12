@@ -26,9 +26,12 @@ Route::middleware('verified')->group(function() {
 
         Route::get('/referals/{type?}','Customer\HomeController@referals')->name('account.referals');
 
-        Route::get('/deposits','Customer\HomeController@deposits')->name('account.deposits');
+        Route::get('/deposits','Customer\DepositController@deposits')->name('account.deposits');
 
-        Route::post('/deposits','Customer\HomeController@payments')->name('account.payments');
+        Route::get('/deposit','Customer\DepositController@depositForm')->name('account.deposit.form');
+        Route::post('/deposit','Customer\DepositController@deposit')->name('account.deposit');
+
+        Route::get('/earnings/{type?}','Customer\HomeController@earnings')->name('account.earnings');
 
 	});
 
@@ -37,4 +40,5 @@ Route::prefix('control')->group(function() {
 
     Route::get('/','Admin\HomeController@index')->name('admin.home');
     Route::get('/registeredusers', 'Admin\HomeController@registeredusers')->name('admin.users');
+
 });

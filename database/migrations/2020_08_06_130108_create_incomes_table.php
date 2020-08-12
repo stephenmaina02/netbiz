@@ -15,7 +15,7 @@ class CreateIncomesTable extends Migration
     {
         Schema::create('incomes', function (Blueprint $table) {
             $table->id();
-            $table->enum('source_type', ['r', 'w']);//w stands for earnings when users withdraws-30 while r stands for earning from user registration 120
+            $table->string('source_type');
             $table->integer('source_id');
             $table->double('amount');
             $table->timestamps();

@@ -17,9 +17,8 @@ class CreateEarningsTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->double('amount');
-            $table->enum('type', ['e','w']);//e stands for earning from user referral, w stands for earning made when a user withdraws
-            $table->integer('withdrawal_id')->nullable();
-            $table->integer('relationship_id')->nullable();
+            $table->string('source_type')->nullable();
+            $table->integer('source_id')->nullable();
             $table->double('accumulated_amount');
             $table->timestamps();
             $table->softDeletes();

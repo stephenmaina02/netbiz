@@ -117,7 +117,7 @@
 
       <!-- Deposit link -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('account.deposits') }}">
+        <a class="nav-link" href="{{ route('account.deposit.form') }}">
           <i class="fas fa-fw fa-upload"></i>
           <span>Deposit</span></a>
       </li>
@@ -125,7 +125,7 @@
 
       <!-- Deposit History Link -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('account.home') }}">
+        <a class="nav-link" href="{{ route('account.deposits') }}">
           <i class="fas fa-fw fa-clock"></i>
           <span>Deposit History</span></a>
       </li>
@@ -145,7 +145,7 @@
 
       <!-- Earning Link -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('account.home') }}">
+        <a class="nav-link" href="{{ route('account.earnings') }}">
           <i class="fas fa-fw fa-dollar-sign"></i>
           <span>Earnings</span></a>
       </li>

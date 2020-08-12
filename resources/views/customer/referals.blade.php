@@ -176,7 +176,7 @@
   <div class="table-responsive">
     <table class="table">
       <thead>
-        <tr class="bg-info">
+        <tr class="bg-primary">
           <td class="text-white">Date</td>
           <td class="text-white">Name</td>
           <td class="text-white">Refferal Type</td>
