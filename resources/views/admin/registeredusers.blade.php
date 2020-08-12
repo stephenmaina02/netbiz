@@ -110,7 +110,7 @@
                                 <label class="text-info">Unknown</label>
                                 @endif
                             </td>
-                            <td><a href="{{route('admin.get-user',['id'=>$user->id]) }}" class="text-primary">Edit</a></td>
+                            <td><a href="{{route('admin.get-user',['id'=>$user->id]) }}" class="text-primary">View</a></td>
                         </tr>
                     </tbody>
                     @endforeach

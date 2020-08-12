@@ -26,9 +26,9 @@ class HomeController extends Controller
     //Getting user to edit
     public function getuser($id){
         $user=User::findorFail($id);
-        return view('admin.edituser')->with('user',$user);
+        return view('admin.viewuser')->with('user',$user);
     }
-    //updating user details
+    //updating user details i.e ban
     public function updateuser(Request $request, $id){
         $user=User::find($id);
         $user->banned=$request->input('banned');
@@ -37,7 +37,7 @@ class HomeController extends Controller
         }
         $user->save();
 
-        return redirect()->route('admin.users');
+        return redirect()->back();
     }
     //Getting all incomes for the company
     public function getincomes(){

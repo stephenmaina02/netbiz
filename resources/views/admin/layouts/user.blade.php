@@ -227,8 +227,48 @@
 
 	<div class="main-container">
 		<div class="pd-ltr-20">
-            @yield('content')
 
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <img src="{{ asset('images/avatar.webp') }}" class="rounded-circle img-responsive mt-1" style="max-width: 250px; height:auto">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <table class="table table-stripped table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Basic information</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Name:</td>
+                                        <td>{{ $user->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Username:</td>
+                                        <td>{{ $user->username }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email:</td>
+                                        <td>{{ $user->email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phone</td>
+                                        <td>{{ $user->phone }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @yield('content')
+                </div>
+            </div>
             <div class="footer-wrap pd-20 mb-20 card-box">
 				Copyright &copy; Netbiz Agency 2020
 			</div>
