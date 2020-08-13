@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Customer;
 
-use App\Http\Controllers\Controller;
+use App\User;
 use App\Payment;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -22,6 +25,21 @@ class HomeController extends Controller
 
     public function deposits(){
         return view('customer.deposits');
+    }
+    //updating user profile
+    public function updateprofile(Request $request){
+        $user=User::find(Auth::user()->id);
+        $user->name=$request->input('name');
+        $user->username=$request->input('username');
+        $user->email=$request->input('email');
+        $user->phone=$request->input('phone');
+        if($request->input('password')!=''){
+            $hashedpass=Hash::make($request->input('password'));
+            $user->password=$hashedpass;
+        }
+        $user->save();
+
+        return redirect()->route('account.home')->with('success', 'Profile Updated Successfully');
     }
 
     //simulating payments
@@ -65,7 +83,7 @@ class HomeController extends Controller
     	$firstIndirectReferalsCounter = $user->firstIndirectReferals();
     	$secondIndirectReferalsCounter = $user->secondIndirectReferals();
     	$thirdIndirectReferalsCounter = $user->thirdIndirectReferals();
-    	
+
 
     	$referal = $user->referals();
 
@@ -134,7 +152,7 @@ class HomeController extends Controller
         $thirdIndirectReferalsEarning = $this->getEarnings($user,'tid');
 
 
-        
+
 
         $data['referalsEarning'] = $earningCounter->sum('amount');
         $data['directReferalsEarning'] = $directReferalsEarning->sum('amount');
@@ -161,7 +179,7 @@ class HomeController extends Controller
                     $query->where('referral_type',$referral_type);
                 });
             });
-            
+
         }
 
         $date_from = request()->input('date_from');

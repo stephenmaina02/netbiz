@@ -72,19 +72,21 @@
 						<span class="user-icon">
 							<img src="{{ asset('images/avatar.webp') }}" alt="">
 						</span>
-						<span class="user-name">Ross C. Lopez</span>
+						<span class="user-name">{{ auth()->user()->name }}</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="{{ route('admin.getprofile', ['id'=>Auth::user()->id]) }}"><i class="dw dw-user1"></i> Profile</a>
-						<a class="dropdown-item" href="#"><i class="dw dw-logout"></i> Log Out</a>
-					</div>
+						<a class="dropdown-item" href="#" id="logoutBtn"><i class="dw dw-logout"></i> Log Out</a>
+                    </div>
+                    <form style="display: none;" action="{{ url('/logout') }}" id="logoutForm" method="post">@csrf</form>
 				</div>
 			</div>
 			<div class="github-link">
 				<a href="https://github.com/dropways/deskapp" target="_blank"><img src="vendors/images/github.svg" alt=""></a>
 			</div>
 		</div>
-	</div>
+    </div>
+
 
 	<div class="right-sidebar">
 		<div class="sidebar-title">
@@ -244,6 +246,14 @@
 	<script src="{{ asset('admin/src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
 	<script src="{{ asset('admin/src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
 	<script src="{{ asset('admin/src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
-	<script src="{{ asset('admin/vendors/scripts/dashboard.js') }}"></script>
+    <script src="{{ asset('admin/vendors/scripts/dashboard.js') }}"></script>
+
+    <script>
+        $(function() {
+          $('#logoutBtn').on('click', function() {
+            $('#logoutForm').trigger('submit');
+          });
+        });
+      </script>
 </body>
 </html>

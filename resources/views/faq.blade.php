@@ -8,7 +8,8 @@
 <div class="card" style="background-color: #f7fcf8">
     <div class="card-body text-center">
         @foreach ($faqs as $faq)
-            <p><b>{{ $faq->question }}</b> - {{ $faq->answer }}</p>
+            <h5><b><u>{{ $faq->question }}</u></b></h5>
+            <p>{{ $faq->answer }}</p>
         @endforeach
     </div>
 </div>
