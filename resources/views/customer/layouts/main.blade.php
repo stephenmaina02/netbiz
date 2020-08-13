@@ -35,6 +35,11 @@
   <!-- Custom scripts for all pages-->
 <script src="{{ asset('customer/js/sb-admin-2.min.js')}}"></script>
 
+<!--spin to win libraries-->
+<link rel="stylesheet" href="{{ asset('spin/main.css') }}" type="text/css" />
+<script type="text/javascript" src="{{ asset('spin/Winwheel.js') }}"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+
 <script>
   $(function() {
 
@@ -149,6 +154,13 @@
           <i class="fas fa-fw fa-dollar-sign"></i>
           <span>Earnings</span></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('account.spin') }}">
+          <i class="fas fa-fw fa-spinner"></i>
+          <span>Spin to win</span></a>
+      </li>
+       <!-- Divider -->
+       <hr class="sidebar-divider">
 
       <!-- Withdrawals Link -->
       <li class="nav-item">
@@ -200,18 +212,8 @@
             <i class="fa fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-
+          <!-- Page Heading -->
+          <h1 class="h3 mb-4 text-gray-800">@yield('page_title')</h1>
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
@@ -316,8 +318,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">@yield('page_title')</h1>
+
 
           @yield('content')
 

@@ -42,6 +42,7 @@ Route::middleware('verified')->group(function() {
         Route::get('/earnings/{type?}','Customer\HomeController@earnings')->name('account.earnings');
         Route::get('/profile', function(){return view('customer.profile');})->name('account.profile');
         Route::put('/update-profile/{id}', 'Customer\HomeController@updateprofile')->name('update.profile');
+        Route::get('/spin-to-win', function(){return view('customer.spin');})->name('account.spin');
 
 	});
 
