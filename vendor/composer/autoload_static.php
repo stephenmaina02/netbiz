@@ -547,6 +547,7 @@ class ComposerStaticInitdd6296fc2e97c8b3b53a0985c48f16fe
         'App\\Income' => __DIR__ . '/../..' . '/app/Income.php',
         'App\\Listeners\\LogVerifiedUser' => __DIR__ . '/../..' . '/app/Listeners/LogVerifiedUser.php',
         'App\\LoginSession' => __DIR__ . '/../..' . '/app/LoginSession.php',
+        'App\\MpesaResponseData' => __DIR__ . '/../..' . '/app/MpesaResponseData.php',
         'App\\Notifications\\NewReferal' => __DIR__ . '/../..' . '/app/Notifications/NewReferal.php',
         'App\\Notifications\\PaymentRecieved' => __DIR__ . '/../..' . '/app/Notifications/PaymentRecieved.php',
         'App\\Notifications\\PaymentSent' => __DIR__ . '/../..' . '/app/Notifications/PaymentSent.php',

@@ -23,5 +23,14 @@ class AdminSeeder extends Seeder
         	'super_admin' => 'y',
         	'active' => 'y',
         ]);
+
+
+        User::updateOrCreate(['username' => 'maina'],[
+            'name' => 'Geoffrey Maina',
+            'phone' => '0719432359',
+            'email' => 'mainageoffrey61@gmail.com',
+            'email_verified_at' => \Carbon\Carbon::now(),
+            'password' => bcrypt('exclamation'),
+        ]);
     }
 }

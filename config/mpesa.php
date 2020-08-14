@@ -7,4 +7,6 @@ return [
 
 	'secret' => env('MPESA_SECRET'),
 
+	'short_code' => env('MPESA_SHORT_CODE'),
+
 ];

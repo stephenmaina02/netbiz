@@ -40,6 +40,7 @@ return array(
     'App\\Income' => $baseDir . '/app/Income.php',
     'App\\Listeners\\LogVerifiedUser' => $baseDir . '/app/Listeners/LogVerifiedUser.php',
     'App\\LoginSession' => $baseDir . '/app/LoginSession.php',
+    'App\\MpesaResponseData' => $baseDir . '/app/MpesaResponseData.php',
     'App\\Notifications\\NewReferal' => $baseDir . '/app/Notifications/NewReferal.php',
     'App\\Notifications\\PaymentRecieved' => $baseDir . '/app/Notifications/PaymentRecieved.php',
     'App\\Notifications\\PaymentSent' => $baseDir . '/app/Notifications/PaymentSent.php',
