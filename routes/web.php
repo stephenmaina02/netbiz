@@ -40,6 +40,9 @@ Route::middleware('verified')->group(function() {
         Route::post('/deposit','Customer\DepositController@deposit')->name('account.deposit');
 
         Route::get('/earnings/{type?}','Customer\HomeController@earnings')->name('account.earnings');
+        Route::get('/profile', function(){return view('customer.profile');})->name('account.profile');
+        Route::put('/update-profile/{id}', 'Customer\HomeController@updateprofile')->name('update.profile');
+        Route::get('/spin-to-win', function(){return view('customer.spin');})->name('account.spin');
 
 	});
 
@@ -51,6 +54,7 @@ Route::prefix('control')->group(function() {
     Route::get('/registeredusers', 'Admin\HomeController@registeredusers')->name('admin.users');
 
     Route::get('/user/{id}', 'Admin\HomeController@getuser')->name('admin.get-user');
+    Route::get('/useredit/{id}', 'Admin\HomeController@getuseredit')->name('admin.get-user-edit');
     Route::put('/updateuserstatus/{id}', 'Admin\HomeController@updateuser')->name('admin.updateuser');
     Route::get('/income', 'Admin\HomeController@getincomes')->name('admin.income');
     Route::get('/payments', 'Admin\HomeController@getpayments')->name('admin.payments');

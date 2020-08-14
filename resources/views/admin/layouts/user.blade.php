@@ -266,7 +266,16 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    @yield('content')
+                    <nav class="nav nav-pills">
+                        <a href="{{ route('admin.get-user',['id'=>$user->id]) }}" class="nav-item nav-link">Account Status</a>
+                        <a href="#" class="nav-item nav-link"><i class="fa fa-money"></i> Payments</a>
+                        <a href="#" class="nav-item nav-link"><i class="fa fa-dollar-sign"></i>Earnings</a>
+                        <a href="#" class="nav-item nav-link"><i class="fa fa-life-ring"></i>Bonuses</a>
+                        <a href="{{ route('admin.get-user-edit',['id'=>$user->id]) }}" class="nav-item nav-link"><i class="fa fa-user"></i>Edit User</a>
+                    </nav>
+                    <div class="ml-3">
+                        @yield('content')
+                    </div>
                 </div>
             </div>
             <div class="footer-wrap pd-20 mb-20 card-box">

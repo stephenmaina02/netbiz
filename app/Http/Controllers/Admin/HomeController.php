@@ -23,10 +23,15 @@ class HomeController extends Controller
         $users=User::paginate(20);
         return view('admin.registeredusers')->with('users', $users);
     }
-    //Getting user to edit
+    //Getting user to account status details
     public function getuser($id){
         $user=User::findorFail($id);
-        return view('admin.viewuser')->with('user',$user);
+        return view('admin.user.userstatus')->with('user',$user);
+    }
+    //Getting user to account details to edit
+    public function getuseredit($id){
+        $user=User::findorFail($id);
+        return view('admin.user.edituser')->with('user',$user);
     }
     //updating user details i.e ban
     public function updateuser(Request $request, $id){
@@ -37,7 +42,7 @@ class HomeController extends Controller
         }
         $user->save();
 
-        return redirect()->back();
+        return redirect()->route('admin.users');
     }
     //Getting all incomes for the company
     public function getincomes(){
